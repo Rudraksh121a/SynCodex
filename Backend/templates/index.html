@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Room</title>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+</head>
+<body>
+    <h2>Flask Chat Room</h2>
+
+    <!-- Room Creation -->
+    <button onclick="createRoom()">Create Room</button>
+    <p id="roomId"></p>
+
+    <!-- Join Room -->
+    <input type="text" id="joinRoomId" placeholder="Enter Room ID" />
+    <input type="text" id="username" placeholder="Enter Username" />
+    <button onclick="joinRoom()">Join Room</button>
+    
+    <hr>
+
+    <!-- Chat Messages -->
+    <div id="chat">
+        <h3>Chat Messages</h3>
+        <div id="messages"></div>
+        <input type="text" id="messageInput" placeholder="Type your message..." />
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+        const socket = io("http://localhost:5000");
+
+        let currentRoom = "";
+        let currentUsername = "";
+
+        function createRoom() {
+            fetch("http://localhost:5000/create-room", { method: "POST" })
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById("roomId").innerText = "Room ID: " + data.room_id;
+                currentRoom = data.room_id;
+            });
+        }
+
+        function joinRoom() {
+            const roomId = document.getElementById("joinRoomId").value;
+            const username = document.getElementById("username").value;
+
+            if (!roomId || !username) {
+                alert("Enter Room ID and Username");
+                return;
+            }
+
+            fetch("http://localhost:5000/join-room", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ room_id: roomId, username })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    currentRoom = roomId;
+                    currentUsername = username;
+                    socket.emit("join", { room_id: roomId, username });
+                    document.getElementById("messages").innerHTML += `<p><b>${username}</b> joined the room</p>`;
+                }
+            });
+        }
+
+        function sendMessage() {
+            const message = document.getElementById("messageInput").value;
+            if (!message || !currentRoom) return;
+
+            socket.emit("send-message", { room_id: currentRoom, username: currentUsername, message });
+            document.getElementById("messageInput").value = "";
+        }
+
+        socket.on("receive-message", (data) => {
+            document.getElementById("messages").innerHTML += `<p><b>${data.user}:</b> ${data.message}</p>`;
+        });
+
+    </script>
+</body>
+</html>
