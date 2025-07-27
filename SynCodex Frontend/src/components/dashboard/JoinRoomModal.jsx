@@ -71,7 +71,7 @@ export default function JoinRoomModal({ onClose }) {
             })
           );
 
-          window.open("/interview-guidelines", "_blank");
+          window.open("/interview-guidelines");
         } else {
           localStorage.setItem(
             "collabActions",
@@ -81,7 +81,7 @@ export default function JoinRoomModal({ onClose }) {
             })
           );
 
-          window.open(`/collab-editor/${joinRoomId}`, "_blank");
+          window.open(`/collab-editor/${joinRoomId}`);
         }
       }
     } catch (error) {

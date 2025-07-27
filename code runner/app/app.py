@@ -134,7 +134,7 @@ def run_ts():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
-    app.run(debug=False, host="0.0.0.0", port=6000)
+    app.run(debug=False, host="0.0.0.0", port=8080)
 
 
 #how to use 
@@ -143,3 +143,5 @@ if __name__ == "__main__":
     "input": "Some input text here"
 }
 '''
+
+# http://127.0.0.1:8080

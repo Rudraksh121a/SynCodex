@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ContactImage from "../assets/Contact-Us.svg";
-import Navbar from "../components/navbar";
+import Navbar from "../components/Navbar";
 import Scroll from "../components/scroll";
 import Footer from "../components/footer";
 import { toast } from "react-toastify";

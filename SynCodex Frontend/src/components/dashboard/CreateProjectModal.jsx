@@ -35,7 +35,7 @@ export default function CreateProjectModal({ onClose }) {
       if (res.status === 201) {
         toast.success("Project created successfully!");
         const { projectId } = res.data;
-        window.open(`/editor/${projectId}`, "_blank");
+        window.open(`/editor/${projectId}`);
       }
     } catch (error) {
       console.error("Project Creation Failed :", error);

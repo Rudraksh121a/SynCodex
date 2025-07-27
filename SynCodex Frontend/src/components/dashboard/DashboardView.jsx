@@ -114,7 +114,7 @@ export default function DashboardView() {
               onClick={() => {
                 if (session.isInterviewMode) return;
                 else {
-                  window.open(`/collab-editor/${session.roomId}`, "_blank");
+                  window.open(`/collab-editor/${session.roomId}`);
                 }
               }}
             >
@@ -173,7 +173,7 @@ export default function DashboardView() {
               key={index}
               className="bg-[#3D415A] p-4 rounded-lg h-39 flex flex-col justify-start cursor-pointer"
               onClick={() =>
-                window.open(`/editor/${project.projectId}`, "_blank")
+                window.open(`/editor/${project.projectId}`)
               }
             >
               <div className="flex justify-between items-center">

@@ -53,7 +53,7 @@ export default function CreateRoomModal({ onClose }) {
               },
             })
           );
-          window.open("/interview-guidelines", "_blank");
+          window.open("/interview-guidelines");
         } else {
           localStorage.setItem(
             "collabActions",
@@ -65,7 +65,7 @@ export default function CreateRoomModal({ onClose }) {
               },
             })
           );
-          window.open(`/collab-editor/${roomId}`, "_blank");
+          window.open(`/collab-editor/${roomId}`);
         }
       }
     } catch (error) {

@@ -183,17 +183,17 @@ export default function CollabEditorLayout({ roomId, isInterviewMode }) {
               }}
             >
               <div
-                className={`h-full editor-wrapper flex-1 ${
+                className={`h-full editor-wrapper flex ${
                   isSidebarOpen ? "max-w-[calc(100%-2%)]" : "w-full"
                 }`}
               >
-                <CollabEditorPane
-                  ref={collabEditorRef}
-                  activeFile={activeFile}
-                  yDoc={yDoc}
-                  roomId={roomId}
-                  isInterviewMode={isInterviewMode}
-                />
+                  <CollabEditorPane
+                    ref={collabEditorRef}
+                    activeFile={activeFile}
+                    yDoc={yDoc}
+                    roomId={roomId}
+                    isInterviewMode={isInterviewMode}
+                  />
 
                 {showPreview && (
                   <div className="w-1/2 border-l border-gray-600">

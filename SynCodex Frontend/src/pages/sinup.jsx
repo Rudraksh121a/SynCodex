@@ -2,7 +2,6 @@ import { Link, useNavigate } from "react-router-dom";
 import SignupNow from "../assets/followers_6081941 1.svg";
 import { useState } from "react";
 import API from "../services/api";
-import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 import { easeInOut, motion } from "motion/react";
 import Scroll from "../components/scroll";
@@ -12,6 +11,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import AppColors from "../utils/appColors";
 import useMeta from "../hooks/useMeta";
+import Navbar from "../components/Navbar"; // Updated import for Navbar
 
 const SignUP = () => {
   useMeta();
